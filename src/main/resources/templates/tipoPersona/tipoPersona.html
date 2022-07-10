@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head th:replace="layout/layout :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/bootstrap-datepicker.css}" th:rel="stylesheet"/>
+        <link th:href="@{/css/bootstrap-datepicker.standalone.css}" th:rel="stylesheet"/>
+    </head>
+    <body>
+        
+        <div class="container-fluid" layout:fragment="page-content">            
+            <nav class="navbar navbar-light bg-light m-2">
+                <h4 class="ps-3"><i class="fa-solid fa-user-tie me-2"></i>Tipo Persona</h4>
+            </nav>
+            <div class="container mt-3">
+                <button type="button" class="btn btn-danger mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="nuevo">Nuevo</button>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered" id="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col" colspan="2" style="text-align: center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL Guardar-->          
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nuevo T. Persona</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Nombre</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                                    </div>
+                                </div>                                
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Descripción</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="description" placeholder="Descripción">
+                                    </div>
+                                </div>                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="guardar">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <!--Modal Editar-->
+            <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Taller</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Nombre</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_nombre" placeholder="Nombre">
+                                        <input type="hidden" id="edit_TpId" value="0">
+                                    </div>
+                                </div>                                
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Descripción</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_description" placeholder="Descripción">
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="edit_tallId" value="0">
+                            <button type="button" class="btn btn-primary" id="modificar">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL -->
+        </div>
+        
+        <th:block layout:fragment="page-scripts">
+        <script th:src="@{/vendor/bootstrap-datepicker.js}"></script>
+        <script th:src="@{/vendor/bootstrap-datepicker.es.min.js}"></script>
+        <script th:src="@{/js/tipoPersona.js}"></script>
+    </th:block>
+    </body>
+</html>

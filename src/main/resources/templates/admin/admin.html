@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head th:replace="layout/layout :: head">
+        <title>Examen</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container-fluid" layout:fragment="page-content">
+
+            <nav class="navbar navbar-light bg-light m-2">
+                <h4 class="ps-3"><i class="fa-solid fa-gauge me-2"></i>Dasboard</h4>
+            </nav>
+            <div class="container-fluid">
+                <!-- Cuadrado de taller-->
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Talleres</h5>
+                                <p class="card-text">Lista de talleres.</p>
+                                <a th:href="@{/menu/taller}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Talleres</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--<!-- comment -->
+                <!-- OTRA PAGINA DE PERSONAS-->
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Personas</h5>
+                                <p class="card-text">Lista de personas.</p>
+                                <a th:href="@{/menu/persona}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Personas</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--<!-- comment -->
+                <!-- Otro de programas-->
+                                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Programas</h5>
+                                <p class="card-text">Lista de programas.</p>
+                                <a th:href="@{/menu/programa}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Personas</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--<!-- comment -->
+                
+            </div>
+        </div>
+        <!--OTRO SCRIPTS PARA PAGINAS-->
+    <th:block layout:fragment="page-scripts">
+
+    </th:block>
+</body>
+</html>

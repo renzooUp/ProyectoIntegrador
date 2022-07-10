@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head th:replace="layout/layout :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/bootstrap-datepicker.css}" th:rel="stylesheet"/>
+        <link th:href="@{/css/bootstrap-datepicker.standalone.css}" th:rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container-fluid" layout:fragment="page-content">            
+            <nav class="navbar navbar-light bg-light m-2">
+                <h4 class="ps-3"><i class="fa-solid fa-user-tie me-2"></i>Talleres</h4>
+            </nav>
+            <div class="container mt-3">
+                <button type="button" class="btn btn-danger mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="nuevo">Nuevo</button>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered" id="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Programa</th>
+                                    <th scope="col">Tema</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Lugar</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col" colspan="3" style="text-align: center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL Guardar-->          
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nuevo Taller</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Programa</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control progId" id="progId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Tema</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="tema" placeholder="Tema">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Fecha</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" id="fecha" autocomplete="off" placeholder="dd/mm/yyyy"/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Hora</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="hora" placeholder="Hora">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Lugar</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="lugar" placeholder="Lugar">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Dirección</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="direccion" placeholder="Direccion">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="guardar">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <!--Modal Editar-->
+            <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Taller</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Programa</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control progId" id="edit_progId">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Tema</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_tema" placeholder="Tema">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Fecha</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" id="edit_fecha" autocomplete="off" placeholder="dd/mm/yyyy"/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Hora</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_hora" placeholder="Hora">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Lugar</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_lugar" placeholder="Lugar">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Dirección</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_direccion" placeholder="Dirección">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="edit_tallId" value="0">
+                            <button type="button" class="btn btn-primary" id="modificar">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL -->
+
+
+            <!--Modal Asignar-->
+            <div class="modal fade" id="asignarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Organizadores del Taller:</h5>
+                            <input type="text" class="modal-title" id="asig_tema" readonly>
+                          <!--  <h5 class="modal-title" id="asig_tema"></h5> -->
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">DNI</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="asig_dni" placeholder="DNI" required="true">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Tipo</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoPers" id="tipoPers" required>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Carrera</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="asig_carrera" placeholder="Carrera" required>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Ciclo</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" id="asig_ciclo" required>
+                                            <option value="">Seleccione</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary float-md-end" id="asignar">Asignar</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <table class="table table-bordered" id="tableAsig">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Apellidos y Nombres</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Carrera</th>
+                                        <th scope="col">Ciclo</th>
+                                        <th scope="col" style="text-align: center">!</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                            
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="asig_tallId">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL -->
+        </div>
+
+        <!--OTRO SCRIPTS PARA PAGINAS-->
+    <th:block layout:fragment="page-scripts">
+        <script th:src="@{/js/taller.js}"></script>
+
+    </th:block>
+
+</body>
+</html>

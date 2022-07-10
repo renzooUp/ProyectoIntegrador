@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head th:replace="layout/layout :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/bootstrap-datepicker.css}" th:rel="stylesheet"/>
+        <link th:href="@{/css/bootstrap-datepicker.standalone.css}" th:rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container-fluid" layout:fragment="page-content">            
+            <nav class="navbar navbar-light bg-light m-2">
+                <h4 class="ps-3"><i class="fa-solid fa-book-open-reader me-2"></i>Asignar persona a taller</h4>
+            </nav>
+            <div class="container mt-3">
+                <button type="button" class="btn btn-danger mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="nuevo">Nuevo</button>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered" id="table_PT">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Taller</th>
+                                    <th scope="col">Persona</th>
+                                    <th scope="col">Tipo de persona</th>
+                                    <th scope="col">Carrera</th>
+                                    <th scope="col">Ciclo</th>
+                                    <th scope="col">Asistencia</th>
+                                    <th scope="col" colspan="3" style="text-align: center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL Guardar-->          
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Asignar Persona</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Taller:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoDoc" id="taller">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">DNI:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoDoc" id="DNI">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Tipo:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoDoc" id="tipoPers">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Carrera:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="carrera" placeholder="Número Documento">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Ciclo:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="ciclo" placeholder="Teléfono">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Asistencia:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="asistencia" placeholder="Teléfono">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="guardar">Agregar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal Editar-->
+            <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Tabla</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Taller:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoDoc" id="edit_taller">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">DNI:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoDoc" id="edit_DNI">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Tipo:</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control tipoDoc" id="edit_tipoPers">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Carrera:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_carrera" placeholder="Número Documento">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Ciclo:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_ciclo" placeholder="Teléfono">
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-3">
+                                    <label class="col-md-3 col-form-label">Asistencia:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="edit_asistencia" placeholder="Teléfono">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="edit_petaId" value="0">
+                            <button type="button" class="btn btn-primary" id="modificar">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <br><br>
+            <div class="container mt-3">
+                <h5>Tabla Persona</h5>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered" id="table_persona">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Apellidos</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Tipo Documento</th>
+                                    <th scope="col">Número Documento</th>
+                                    <th scope="col">Celular</th>
+                                </tr>
+                            </thead>
+                            <tbody>                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--OTRO SCRIPTS PARA PAGINAS-->
+        <th:block layout:fragment="page-scripts">
+            <script th:src="@{/js/personaTaller.js}"></script>
+        </th:block>
+        
+    </body>
+</html>
