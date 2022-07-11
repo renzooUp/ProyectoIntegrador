@@ -1,8 +1,8 @@
 function VerificarUsuario(){
-    var txtUsuario = document.getElementById("txtUsuario").value;
-    var txtPassword = document.getElementById("txtPassword").value;
+    txtUsuario = document.getElementById("txtUsuario").value;
+    txtPassword = document.getElementById("txtPassword").value;
     
-    if (txtUsuario == "admin" && txtPassword == "admin") {
+    if (txtUsuario == "admin" && txtPassword == "123") {
         console.log(txtUsuario + txtPassword);
         window.location.href = "/admin";
     } else {
