@@ -14,13 +14,27 @@
                 <h4 class="ps-3"><i class="fa-solid fa-gauge me-2"></i>Dasboard</h4>
             </nav>
             <div class="container-fluid">
-                <!-- Cuadrado de taller-->
+                <!-- Cuadrado de programas-->
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Programas</h5>
+                                <p class="card-text">Tabla de Programas a realizar.</p>
+                                <a th:href="@{/menu/programa}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Programas</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--<!-- comment -->
+                <!-- OPCION DE TALLERES-->
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-3 mt-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Talleres</h5>
-                                <p class="card-text">Lista de talleres.</p>
+                                <p class="card-text">Tabla de talleres a realizar.</p>
                                 <a th:href="@{/menu/taller}" class="btn btn-primary align-items-center">
                                     <strong class="me-2">Talleres</strong><i class="fa-solid fa-angle-right"></i>
                                 </a>
@@ -28,34 +42,48 @@
                         </div>
                     </div>
                 </div><!--<!-- comment -->
-                <!-- OTRA PAGINA DE PERSONAS-->
+                <!-- Opción de personas-->
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-3 mt-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Personas</h5>
-                                <p class="card-text">Lista de personas.</p>
+                                <p class="card-text">Lista de personas que participaran.</p>
                                 <a th:href="@{/menu/persona}" class="btn btn-primary align-items-center">
                                     <strong class="me-2">Personas</strong><i class="fa-solid fa-angle-right"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div><!--<!-- comment -->
-                <!-- Otro de programas-->
-                                <div class="row">
+                </div>
+                <!-- Opción de tipo personas-->
+                <div class="row">
                     <div class="col-12 col-md-6 col-lg-3 mt-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Programas</h5>
-                                <p class="card-text">Lista de programas.</p>
-                                <a th:href="@{/menu/programa}" class="btn btn-primary align-items-center">
-                                    <strong class="me-2">Personas</strong><i class="fa-solid fa-angle-right"></i>
+                                <h5 class="card-title">Tipo de personas</h5>
+                                <p class="card-text">Lista de funciones que hara cada persona.</p>
+                                <a th:href="@{/menu/tipo-persona}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Tipo de personas</strong><i class="fa-solid fa-angle-right"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div><!--<!-- comment -->
+                </div>
+                <!-- Asignar personas a cada taller-->
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Asignar taller</h5>
+                                <p class="card-text">Lista personas que ayudaran en cada taller.</p>
+                                <a th:href="@{/menu/persona-taller}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Asignar taller</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>
