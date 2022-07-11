@@ -66,7 +66,7 @@
                                     <label class="col-md-3 col-form-label">Fecha</label>
                                     <div class="col-md-9">
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" id="fecha" autocomplete="off" placeholder="dd/mm/yyyy"/>
+                                            <input type="text" class="form-control" id="fecha" autocomplete="off" readonly placeholder="dd/mm/yyyy"/>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
@@ -127,7 +127,7 @@
                                     <label class="col-md-3 col-form-label">Fecha</label>
                                     <div class="col-md-9">
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" id="edit_fecha" autocomplete="off" placeholder="dd/mm/yyyy"/>
+                                            <input type="text" class="form-control" id="edit_fecha" autocomplete="off" readonly placeholder="dd/mm/yyyy"/>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
@@ -249,8 +249,18 @@
 
         <!--OTRO SCRIPTS PARA PAGINAS-->
     <th:block layout:fragment="page-scripts">
-        <script th:src="@{/js/taller.js}"></script>
-
+    <script th:src="@{/vendor/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/vendor/bootstrap-datepicker.es.min.js}"></script>
+    <script th:src="@{/js/taller.js}"></script>
+    <!-- Para agregar fecha mediante el calendario-->
+    <script>
+            $('.input-group.date').datepicker({
+                autoclose: true,
+                //todayHighlight: true,
+                format: "dd/mm/yyyy",
+                language: 'es'
+            });
+    </script>
     </th:block>
 
 </body>
