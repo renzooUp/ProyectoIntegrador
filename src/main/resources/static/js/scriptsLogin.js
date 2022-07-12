@@ -3,11 +3,10 @@ function VerificarUsuario(){
     txtPassword = document.getElementById("txtPassword").value;
     
     if (txtUsuario == "admin" && txtPassword == "123") {
-        console.log(txtUsuario + txtPassword);
+        
         window.location.href = "/admin";
     } else {
-        console.log("ta mal xd ");
-        console.log(txtUsuario + txtPassword);
+        alert("Datos incorrectos");
     }
 };
 
