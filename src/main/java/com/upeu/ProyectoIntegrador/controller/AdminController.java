@@ -14,6 +14,6 @@ public class AdminController {
     @GetMapping("/admin")
     public String indexAdmin(Model model){
         model.addAttribute("mensaje", "Talleres");
-        return "admin/admin";
+        return "admin/admin";//nos retorna el documento html
     }
 }

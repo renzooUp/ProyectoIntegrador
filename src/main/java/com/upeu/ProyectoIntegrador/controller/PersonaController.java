@@ -35,6 +35,7 @@ public class PersonaController {
         Persona persona = personaService.findById(id);
         return ResponseEntity.ok(persona);
     }
+
     @GetMapping("/dni/{dni}")
     public ResponseEntity<Persona> findByPersDni(@PathVariable String dni) {
         Persona persona = personaService.findByPersDni(dni);

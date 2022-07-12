@@ -42,7 +42,4 @@ public class PersonaTaller implements Serializable{
 
     @Column(name = "peta_ciclo")
     private String petaCiclo;
-
-    @Column(name = "peta_asistencia")
-    private String petaAsistencia;
 }
